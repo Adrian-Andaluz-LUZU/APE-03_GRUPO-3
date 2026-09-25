@@ -10,7 +10,7 @@
 
 * **Carrera:** Ingeniería en Software  
 * **Asignatura:** Algoritmos y Lógica de Programación  
-* **Nivel / Parallelo:** Primer Semestre — Parallel B  
+* **Nivel / Parallelo:** Primer Semestre — Paralelo B  
 * **Actividad:** APE 3 – Estructuras de Repetición  
 * **Modalidad:** Presencial  
 
@@ -28,8 +28,8 @@ Desarrollar soluciones algorítmicas utilizando estructuras repetitivas (`for`, 
 | :--- | :--- | :--- | :---: |
 | **Adrián Andaluz** | Ejercicio 01<br>Ejercicio 02 | - Creación y estructura base del repositorio.<br>- Revisión de Pull Request (Code Review) del Ejercicio 03/04.<br>- Elaboración y formato final del informe PDF/Moodle. | 25% |
 | **Pulo Escobar** | Ejercicio 03<br>Ejercicio 04 | - Configuración de la documentación y diagramas de flujo.<br>- Revisión de Pull Request (Code Review) del Ejercicio 05/06.<br>- Apoyo en pruebas de escritorio. | 25% |
-| **Mateo Salazar** | Ejercicio 05<br>Ejercicio 06<br>Ejercicio 07 | - Implementación de lógica de ciclos y validaciones.<br>- Revisión de Pull Request (Code Review) del Ejercicio 08/09/10.<br>- Verificación de normas de código limpio e indentación. | 25% |
-| **Ariel Chanatasig** | Ejercicio 08<br>Ejercicio 09<br>Ejercicio 10 | - Diseño de menú interactivo e integración de ejercicios.<br>- Revisión de Pull Request (Code Review) de ejercicios base.<br>- Control de calidad y lista de verificación final. | 25% |
+| **Mateo Salazar** | Ejercicio 08<br>Ejercicio 09<br>Ejercicio 10 | - Implementación de lógica de ciclos y validaciones.<br>- Revisión de Pull Request (Code Review) del Ejercicio 08/09/10.<br>- Verificación de normas de código limpio e indentación. | 25% |
+| **Ariel Chanatasig** | Ejercicio 05<br>Ejercicio 06<br>Ejercicio 07 | - Diseño de menú interactivo e integración de ejercicios.<br>- Revisión de Pull Request (Code Review) de ejercicios base.<br>- Control de calidad y lista de verificación final. | 25% |
 
 ---
 
