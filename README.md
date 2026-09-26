@@ -139,7 +139,9 @@ FinAlgoritmo
 ---
 ## Diagrama de flujo
 <img width="5156" height="9868" alt="image" src="https://github.com/user-attachments/assets/0ffd30a7-01d3-4c6a-9447-b3c685df6a49" />
+
 ---
+
 ## Prueba de escritorio
 
 | Paso | N | i | nota | Válida | Suma | Mayor | Menor | Apr/Rep | Obs. |
@@ -149,6 +151,131 @@ FinAlgoritmo
 | **3** | 3 | 2 | 4.0 | Sí | 12.5 | 8.5 | 4.0 | 1/1 | Est. 2 (Reprobado) |
 | **4** | 3 | 3 | 9.0 | Sí | 21.5 | 9.0 | 4.0 | 2/1 | Est. 3 (Aprobado) |
 | **5** | 3 | - | - | - | 21.5 | 9.0 | 4.0 | 2/1 | Promedio = 7.17 |
+
 ---
+
 # Evidencias de ejecucion
 <img width="886" height="269" alt="image" src="https://github.com/user-attachments/assets/d9862744-78ae-40bf-bde1-b36074103e33" />
+
+---
+
+# 2. Control de edades con centinela
+
+##  Enunciado
+Desarrollar un programa que permita el ingreso continuo de edades válidas de personas hasta que se ingrese el valor centinela `-1`. El sistema debe clasificar y contabilizar a las personas en tres grupos: menores de edad ($<18$ años), adultos ($18$ a $65$ años) y mayores de 65 años. Asimismo, debe calcular y mostrar el promedio general de las edades ingresadas. Si se ingresa una edad negativa distinta de `-1`, debe solicitarse nuevamente por ser un dato no válido.
+
+---
+
+##  Análisis
+Para resolver este problema con control de centinela, se aplicará el siguiente análisis lógico:
+* **Estructura de control:** Se utilizará un bucle `while` controlado por el valor centinela `-1`.
+* **Validación de datos:** Cada edad ingresada debe validarse para asegurar que sea mayor o igual a $0$, o igual a `-1` para finalizar. Si la edad es menor a `-1`, se mostrará un mensaje de error.
+* **Acumulación y Conteo:**
+  * Se mantendrá un contador total de personas válidas registradas y un acumulador para la suma de las edades.
+  * Menores de edad: $\text{edad} < 18$.
+  * Adultos: $\text{edad} \ge 18$ y $\text{edad} \le 65$.
+  * Mayores de 65 años: $\text{edad} > 65$.
+* **Cálculo de promedio:** Al salir del bucle, se evaluará que el contador de personas sea mayor a $0$ para evitar una división para cero.
+
+---
+
+## Entradas / Procesos / Salidas
+
+* **Entradas:**
+  * `edad`: Edad de la persona ($\text{edad} \ge 0$ o $\text{edad} = -1$ para salir).
+
+* **Procesos:**
+  * Inicializar variables: `sumaEdades = 0`, `totalPersonas = 0`, `menores = 0`, `adultos = 0`, `mayores65 = 0`.
+  * Leer `edad`.
+  * Mientras `edad != -1` hacer:
+    * Si `edad < -1`, solicitar nueva lectura por ser inválida.
+    * Sino:
+      * `sumaEdades = sumaEdades + edad`.
+      * `totalPersonas = totalPersonas + 1`.
+      * Si `edad < 18` entonces `menores = menores + 1`.
+      * Sino si `edad <= 65` entonces `adultos = adultos + 1`.
+      * Sino `mayores65 = mayores65 + 1`.
+    * Leer siguiente `edad`.
+  * Si `totalPersonas > 0` entonces `promedio = sumaEdades / totalPersonas`.
+
+* **Salidas:**
+  * Cantidad de menores de edad.
+  * Cantidad de adultos.
+  * Cantidad de mayores de 65 años.
+  * Promedio de edades.
+
+---
+
+##  Pseudocódigo
+
+```text
+Algoritmo ControlEdadesCentinela
+    Definir edad, sumaEdades, totalPersonas Como Entero
+    Definir menores, adultos, mayores65 Como Entero
+    Definir promedio Como Real
+    
+    sumaEdades <- 0
+    totalPersonas <- 0
+    menores <- 0
+    adultos <- 0
+    mayores65 <- 0
+    
+    Escribir "Ingrese una edad (-1 para terminar):"
+    Leer edad
+    
+    Mientras edad <> -1 Hacer
+        Si edad < -1 Entonces
+            Escribir "Error: La edad no puede ser negativa."
+        Sino
+            sumaEdades <- sumaEdades + edad
+            totalPersonas <- totalPersonas + 1
+            
+            Si edad < 18 Entonces
+                menores <- menores + 1
+            Sino
+                Si edad <= 65 Entonces
+                    adultos <- adultos + 1
+                Sino
+                    mayores65 <- mayores65 + 1
+                FinSi
+            FinSi
+        FinSi
+        
+        Escribir "Ingrese la siguiente edad (-1 para terminar):"
+        Leer edad
+    FinMientras
+    
+    Si totalPersonas > 0 Entonces
+        promedio <- sumaEdades / totalPersonas
+        Escribir "--- RESULTADOS ---"
+        Escribir "Cantidad de menores de edad (<18): ", menores
+        Escribir "Cantidad de adultos (18-65): ", adultos
+        Escribir "Cantidad de mayores de 65 años: ", mayores65
+        Escribir "Promedio de edades: ", promedio
+    Sino
+        Escribir "No se ingresaron datos para procesar."
+    FinSi
+FinAlgoritmo
+```
+
+---
+
+## Diagrama de flujo
+<img width="7252" height="5992" alt="image" src="https://github.com/user-attachments/assets/e4fd96e4-4c6c-4e5d-9e94-8bf1e66dee72" />
+
+---
+
+## Prueba de escritorio
+| Paso | edad | edad != -1 | Suma | Total | Menor | Adulto | May65 | Prom. | Obs. |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
+| **1** | 15 | Sí | 15 | 1 | 1 | 0 | 0 | - | Lectura 1 (Menor) |
+| **2** | 30 | Sí | 45 | 2 | 1 | 1 | 0 | - | Lectura 2 (Adulto) |
+| **3** | 70 | Sí | 115 | 3 | 1 | 1 | 1 | - | Lectura 3 (Mayor 65) |
+| **4** | -1 | No | 115 | 3 | 1 | 1 | 1 | 38.33 | Fin centinela. Prom=115/3 |
+
+---
+
+## Evidencias de ejecucion
+<img width="886" height="378" alt="image" src="https://github.com/user-attachments/assets/c1eb9d29-fccf-466d-83ed-a0008b60e641" />
+
+
