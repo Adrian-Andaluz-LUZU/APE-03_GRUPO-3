@@ -38,7 +38,7 @@ Desarrollar un programa que solicite la cantidad $N$ de estudiantes y luego regi
 
 ---
 
-## 2. Análisis
+##  Análisis
 Para resolver el problema planteado, se requiere implementar una secuencia de pasos lógicos basada en la lectura e iteración de datos:
 * **Validación inicial:** Solicitar la cantidad $N$ de estudiantes asegurando que sea un número entero mayor a 0.
 * **Procesamiento repetitivo:** Utilizar un bucle `for` para iterar desde 1 hasta $N$.
