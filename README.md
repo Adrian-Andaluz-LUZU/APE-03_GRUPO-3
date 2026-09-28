@@ -1,4 +1,4 @@
-#  APE 3 - Estructuras de Repetición en Java
+S#  APE 3 - Estructuras de Repetición en Java
 
 ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
 ![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
@@ -278,4 +278,124 @@ FinAlgoritmo
 ## Evidencias de ejecucion
 <img width="886" height="378" alt="image" src="https://github.com/user-attachments/assets/c1eb9d29-fccf-466d-83ed-a0008b60e641" />
 
+---
 
+# 3. Calculadora con menú repetitivo
+
+##  Enunciado
+Construir un programa que muestre un menú con las opciones: 1) Sumar, 2) Restar, 3) Multiplicar, 4) Dividir y 5) Salir. El menú debe repetirse hasta que el usuario seleccione la opción Salir. En la división se debe controlar que el divisor no sea cero para evitar un error.
+
+---
+
+##  Análisis
+Para resolver el problema planteado, se requiere un menú que se repita y que ejecute una operación según la opción elegida:
+* **Estructura repetitiva:** Se utilizará un bucle `Repetir ... Hasta Que` para mostrar el menú al menos una vez y repetirlo hasta que la opción sea `5`.
+* **Selección de operación:** Se utilizará una estructura `Segun` para ejecutar la operación que corresponda a cada opción.
+* **Lectura de datos:** Para las opciones 1 a 4 se solicitan dos números reales, `a` y `b`.
+* **Control de división:** Antes de dividir se comprueba que `b` sea distinto de `0`. Si `b = 0`, se muestra un mensaje de error y no se realiza la operación.
+* **Validación del menú:** Si la opción no está entre 1 y 5, se muestra un mensaje de opción inválida y el menú se vuelve a mostrar.
+
+---
+
+##  Entradas / Procesos / Salidas
+
+* **Entradas:**
+  * `opcion`: Opción elegida del menú (1 a 5).
+  * `a`, `b`: Los dos números con los que se opera.
+
+* **Procesos:**
+  * Mostrar el menú.
+  * Leer `opcion`.
+  * Si `opcion` es 1 a 4, leer `a` y `b`.
+  * Según la opción:
+    * `1`: `resultado = a + b`.
+    * `2`: `resultado = a - b`.
+    * `3`: `resultado = a * b`.
+    * `4`: si `b <> 0` entonces `resultado = a / b`, si no mostrar error.
+    * `5`: finalizar el programa.
+    * Otro valor: mostrar "Opción inválida".
+  * Repetir hasta que `opcion = 5`.
+
+* **Salidas:**
+  * El menú de opciones.
+  * El resultado de la operación.
+  * Mensaje de error por división entre cero.
+  * Mensaje de opción inválida.
+  * Mensaje de despedida al salir.
+
+---
+
+##  Pseudocódigo
+
+```text
+Algoritmo CalculadoraMenu
+    Definir opcion Como Entero
+    Definir a, b, resultado Como Real
+
+    Repetir
+        Escribir "===== CALCULADORA ====="
+        Escribir "1) Sumar"
+        Escribir "2) Restar"
+        Escribir "3) Multiplicar"
+        Escribir "4) Dividir"
+        Escribir "5) Salir"
+        Escribir "Elija una opción:"
+        Leer opcion
+
+        Si opcion >= 1 Y opcion <= 4 Entonces
+            Escribir "Ingrese el primer número:"
+            Leer a
+            Escribir "Ingrese el segundo número:"
+            Leer b
+        FinSi
+
+        Segun opcion Hacer
+            1:
+                resultado <- a + b
+                Escribir "Resultado: ", resultado
+            2:
+                resultado <- a - b
+                Escribir "Resultado: ", resultado
+            3:
+                resultado <- a * b
+                Escribir "Resultado: ", resultado
+            4:
+                Si b <> 0 Entonces
+                    resultado <- a / b
+                    Escribir "Resultado: ", resultado
+                Sino
+                    Escribir "Error: no se puede dividir entre cero."
+                FinSi
+            5:
+                Escribir "Programa finalizado."
+            De Otro Modo:
+                Escribir "Opción inválida. Intente de nuevo."
+        FinSegun
+    Hasta Que opcion = 5
+FinAlgoritmo
+```
+
+---
+
+## Diagrama de flujo
+<img width="1701" height="1788" alt="image" src="https://github.com/user-attachments/assets/40ede740-e325-4c04-ad74-51219eb3d3f0" />
+
+
+---
+
+## Prueba de escritorio
+
+| Paso | opcion | a | b | resultado | Observación |
+| :---: | :---: | :---: | :---: | :---: | :--- |
+| **1** | 1 | 8 | 2 | 10 | Suma correcta |
+| **2** | 2 | 9 | 4 | 5 | Resta correcta |
+| **3** | 3 | 3 | 6 | 18 | Multiplicación correcta |
+| **4** | 4 | 10 | 4 | 2.5 | División correcta |
+| **5** | 4 | 10 | 0 | - | Error: división entre cero |
+| **6** | 7 | - | - | - | Opción inválida, se repite el menú |
+| **7** | 5 | - | - | - | Salir, termina el programa |
+
+---
+
+# Evidencias de ejecución
+<img width="1359" height="841" alt="image" src="https://github.com/user-attachments/assets/33da25ad-d009-4351-bdc6-1a07c655eb66" />
