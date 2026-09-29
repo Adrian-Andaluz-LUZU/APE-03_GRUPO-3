@@ -399,3 +399,88 @@ FinAlgoritmo
 
 # Evidencias de ejecución
 <img width="1359" height="841" alt="image" src="https://github.com/user-attachments/assets/33da25ad-d009-4351-bdc6-1a07c655eb66" />
+
+---
+
+# 4. Tabla de multiplicar validada
+
+##  Enunciado
+Desarrollar un programa que solicite un número entre 1 y 12. Si el dato ingresado es incorrecto, el programa debe volver a solicitarlo. Una vez validado el número, se debe generar su tabla de multiplicar desde 1 hasta 12.
+
+---
+
+##  Análisis
+Para resolver el problema planteado, se requiere validar el dato de entrada y luego generar la tabla mediante una repetición:
+* **Validación previa:** Se leerá el número `n` y se utilizará un bucle `Mientras` que lo vuelva a solicitar mientras no esté dentro del intervalo `[1, 12]`.
+* **Mensaje de error:** Si el número no es válido, se mostrará un mensaje indicando que debe ingresar un valor entre 1 y 12.
+* **Ciclo controlado:** Una vez validado `n`, se utilizará un bucle `Para` con el multiplicador `i` desde 1 hasta 12.
+* **Cálculo:** En cada repetición se calcula `resultado = n * i` y se muestra la operación completa.
+
+---
+
+##  Entradas / Procesos / Salidas
+
+* **Entradas:**
+  * `n`: Número al que se le generará la tabla (`1 <= n <= 12`).
+
+* **Procesos:**
+  * Solicitar `n`.
+  * Mientras `n < 1` o `n > 12`, mostrar error y volver a solicitarlo.
+  * Para `i = 1` hasta `12`:
+    * `resultado = n * i`.
+    * Mostrar `n x i = resultado`.
+
+* **Salidas:**
+  * Mensaje de error si el número no es válido.
+  * Las 12 líneas de la tabla de multiplicar de `n`.
+
+---
+
+##  Pseudocódigo
+
+```text
+Algoritmo TablaMultiplicarValidada
+    Definir n, i, resultado Como Entero
+
+    Escribir "Ingrese un número entre 1 y 12:"
+    Leer n
+
+    Mientras n < 1 O n > 12 Hacer
+        Escribir "Dato incorrecto. Debe estar entre 1 y 12."
+        Escribir "Ingrese un número entre 1 y 12:"
+        Leer n
+    FinMientras
+
+    Escribir "--- TABLA DEL ", n, " ---"
+    Para i <- 1 Hasta 12 Con Paso 1 Hacer
+        resultado <- n * i
+        Escribir n, " x ", i, " = ", resultado
+    FinPara
+FinAlgoritmo
+```
+
+---
+
+## Diagrama de flujo
+<img width="542" height="1159" alt="image" src="https://github.com/user-attachments/assets/77fbdd3c-f2d6-4e48-b4e7-ed50ac92ea37" />
+
+
+---
+
+## Prueba de escritorio
+
+| Paso | n | Válido | i | resultado | Observación |
+| :---: | :---: | :---: | :---: | :---: | :--- |
+| **1** | 15 | No | - | - | Error, se vuelve a pedir |
+| **2** | 0 | No | - | - | Error, se vuelve a pedir |
+| **3** | 7 | Sí | - | - | Número válido, inicia la tabla |
+| **4** | 7 | Sí | 1 | 7 | 7 x 1 = 7 |
+| **5** | 7 | Sí | 2 | 14 | 7 x 2 = 14 |
+| **6** | 7 | Sí | 3 | 21 | 7 x 3 = 21 |
+| **...** | 7 | Sí | ... | ... | Continúa hasta i = 12 |
+| **7** | 7 | Sí | 12 | 84 | 7 x 12 = 84, fin del bucle |
+
+---
+
+# Evidencias de ejecución
+<img width="1359" height="805" alt="image" src="https://github.com/user-attachments/assets/c9974c62-0ddf-42e4-8e15-911f5dff93dc" />
