@@ -484,3 +484,909 @@ FinAlgoritmo
 
 # Evidencias de ejecución
 <img width="1359" height="805" alt="image" src="https://github.com/user-attachments/assets/c9974c62-0ddf-42e4-8e15-911f5dff93dc" />
+
+
+---
+
+# EJERCICIO 5: CAJERO UNIVERSITARIO
+
+##  Problema
+
+Realizar un programa que simule el funcionamiento de un cajero universitario. El programa debe permitir consultar el saldo, realizar depósitos, realizar retiros, consultar el número de transacciones realizadas y salir del sistema.
+
+---
+
+##  Análisis
+
+El programa comienza solicitando al usuario el saldo inicial de su cuenta.
+
+Después presenta un menú con las siguientes opciones:
+
+1. Consultar saldo.
+2. Depositar dinero.
+3. Retirar dinero.
+4. Consultar número de transacciones.
+5. Salir.
+
+Cada depósito o retiro válido aumenta el contador de transacciones.
+
+Para realizar un retiro, el valor debe ser positivo y no puede superar el saldo disponible.
+
+El programa continúa funcionando hasta que el usuario seleccione la opción 5.
+
+---
+
+##  Entradas
+
+- Saldo inicial.
+- Opción del menú.
+- Valor del depósito.
+- Valor del retiro.
+
+---
+
+##  Procesos
+
+- Inicializar el saldo.
+- Inicializar el número de transacciones en cero.
+- Mostrar el menú.
+- Consultar el saldo.
+- Sumar depósitos al saldo.
+- Restar retiros al saldo.
+- Validar los retiros.
+- Incrementar el número de transacciones.
+- Repetir el menú hasta seleccionar salir.
+
+---
+
+##  Salidas
+
+- Saldo disponible.
+- Confirmación del depósito.
+- Confirmación del retiro.
+- Mensaje de retiro inválido.
+- Número de transacciones.
+- Mensaje de salida.
+
+---
+
+##  Algoritmo
+
+1. Inicio.
+2. Solicitar el saldo inicial.
+3. Inicializar el contador de transacciones en cero.
+4. Mostrar el menú.
+5. Leer la opción seleccionada.
+6. Si la opción es 1, mostrar el saldo.
+7. Si la opción es 2, solicitar el depósito.
+8. Validar que el depósito sea positivo.
+9. Sumar el depósito al saldo y aumentar las transacciones.
+10. Si la opción es 3, solicitar el retiro.
+11. Validar que el retiro sea positivo y no supere el saldo.
+12. Restar el retiro del saldo y aumentar las transacciones.
+13. Si la opción es 4, mostrar el número de transacciones.
+14. Si la opción es 5, finalizar el programa.
+15. Si se selecciona otra opción, mostrar un mensaje de error.
+16. Repetir desde el paso 4 hasta seleccionar la opción 5.
+17. Fin.
+
+---
+
+##  Pseudocódigo
+
+```text
+Proceso CajeroUniversitario
+
+    Definir saldo, deposito, retiro Como Real
+    Definir opcion, transacciones Como Entero
+
+    Escribir "Ingrese el saldo inicial:"
+    Leer saldo
+
+    transacciones <- 0
+
+    Repetir
+
+        Escribir "===== CAJERO UNIVERSITARIO ====="
+        Escribir "1. Consultar saldo"
+        Escribir "2. Depositar"
+        Escribir "3. Retirar"
+        Escribir "4. Numero de transacciones"
+        Escribir "5. Salir"
+        Escribir "Seleccione una opcion:"
+        Leer opcion
+
+        Segun opcion Hacer
+
+            1:
+                Escribir "Saldo disponible: $", saldo
+
+            2:
+                Escribir "Ingrese el valor a depositar:"
+                Leer deposito
+
+                Si deposito > 0 Entonces
+                    saldo <- saldo + deposito
+                    transacciones <- transacciones + 1
+                    Escribir "Deposito realizado correctamente."
+                SiNo
+                    Escribir "El valor debe ser positivo."
+                FinSi
+
+            3:
+                Escribir "Ingrese el valor a retirar:"
+                Leer retiro
+
+                Si retiro > 0 Y retiro <= saldo Entonces
+                    saldo <- saldo - retiro
+                    transacciones <- transacciones + 1
+                    Escribir "Retiro realizado correctamente."
+                SiNo
+                    Escribir "Retiro no valido."
+                FinSi
+
+            4:
+                Escribir "Numero de transacciones: ", transacciones
+
+            5:
+                Escribir "Gracias por utilizar el cajero."
+
+            De Otro Modo:
+                Escribir "Opcion no valida."
+
+        FinSegun
+
+    Hasta Que opcion = 5
+
+FinProceso
+```
+
+---
+
+##  Diagrama de flujo
+
+<img width="1082" height="962" alt="image" src="https://github.com/user-attachments/assets/4facd082-d725-4eea-ac67-2135e2f06ea4" />
+
+
+---
+
+## 9. Código Java
+
+```java
+import java.util.Scanner;
+
+public class CajeroUniversitario {
+
+    public static void main(String[] args) {
+
+        Scanner entrada = new Scanner(System.in);
+
+        double saldo;
+        double deposito;
+        double retiro;
+
+        int opcion;
+        int transacciones = 0;
+
+        System.out.print("Ingrese el saldo inicial: ");
+        saldo = entrada.nextDouble();
+
+        do {
+
+            System.out.println("\n===== CAJERO UNIVERSITARIO =====");
+            System.out.println("1. Consultar saldo");
+            System.out.println("2. Depositar");
+            System.out.println("3. Retirar");
+            System.out.println("4. Numero de transacciones");
+            System.out.println("5. Salir");
+
+            System.out.print("Seleccione una opcion: ");
+            opcion = entrada.nextInt();
+
+            switch (opcion) {
+
+                case 1:
+
+                    System.out.printf(
+                        "Saldo disponible: $%.2f%n",
+                        saldo
+                    );
+
+                    break;
+
+                case 2:
+
+                    System.out.print(
+                        "Ingrese el valor a depositar: "
+                    );
+
+                    deposito = entrada.nextDouble();
+
+                    if (deposito > 0) {
+
+                        saldo = saldo + deposito;
+                        transacciones++;
+
+                        System.out.println(
+                            "Deposito realizado correctamente."
+                        );
+
+                    } else {
+
+                        System.out.println(
+                            "El valor debe ser positivo."
+                        );
+                    }
+
+                    break;
+
+                case 3:
+
+                    System.out.print(
+                        "Ingrese el valor a retirar: "
+                    );
+
+                    retiro = entrada.nextDouble();
+
+                    if (retiro > 0 && retiro <= saldo) {
+
+                        saldo = saldo - retiro;
+                        transacciones++;
+
+                        System.out.println(
+                            "Retiro realizado correctamente."
+                        );
+
+                    } else {
+
+                        System.out.println(
+                            "Retiro no valido."
+                        );
+                    }
+
+                    break;
+
+                case 4:
+
+                    System.out.println(
+                        "Numero de transacciones: "
+                        + transacciones
+                    );
+
+                    break;
+
+                case 5:
+
+                    System.out.println(
+                        "Gracias por utilizar el cajero."
+                    );
+
+                    break;
+
+                default:
+
+                    System.out.println(
+                        "Opcion no valida."
+                    );
+            }
+
+        } while (opcion != 5);
+
+        entrada.close();
+    }
+}
+```
+
+---
+
+##  Prueba de escritorio
+
+### Datos
+
+- Saldo inicial: $500
+- Depósito: $200
+- Retiro: $150
+
+| Paso | Opción | Operación | Saldo | Transacciones |
+|---|---:|---|---:|---:|
+| 1 | - | Saldo inicial | $500 | 0 |
+| 2 | 1 | Consultar saldo | $500 | 0 |
+| 3 | 2 | Depositar $200 | $700 | 1 |
+| 4 | 3 | Retirar $150 | $550 | 2 |
+| 5 | 4 | Consultar transacciones | $550 | 2 |
+| 6 | 5 | Salir | $550 | 2 |
+
+### Resultado
+
+<img width="902" height="521" alt="image" src="https://github.com/user-attachments/assets/9ff96d87-8b0c-4f35-a7cb-534e63610292" />
+
+
+# EJERCICIO 6: ESTADÍSTICAS DE UN CURSO
+
+##  Problema
+
+Realizar un programa que permita ingresar las calificaciones de un grupo de estudiantes y obtener estadísticas del curso.
+
+El programa debe calcular el promedio general, la nota mayor, la nota menor, la cantidad de estudiantes aprobados y reprobados y los porcentajes correspondientes.
+
+Una nota mayor o igual a 7 se considera aprobada.
+
+---
+
+##  Análisis
+
+Primero se solicita la cantidad de estudiantes.
+
+Después se ingresa la nota de cada estudiante. Las notas deben estar entre 0 y 10.
+
+Por cada nota válida se acumula la suma, se determina la nota mayor y menor y se cuenta si el estudiante aprobó o reprobó.
+
+Finalmente se calcula el promedio y los porcentajes de aprobación y reprobación.
+
+---
+
+##  Entradas
+
+- Número de estudiantes.
+- Nota de cada estudiante.
+
+---
+
+##  Procesos
+
+- Validar las notas.
+- Sumar todas las notas.
+- Determinar la nota mayor.
+- Determinar la nota menor.
+- Contar aprobados.
+- Contar reprobados.
+- Calcular el promedio.
+- Calcular porcentaje de aprobados.
+- Calcular porcentaje de reprobados.
+
+---
+
+##  Salidas
+
+- Promedio general.
+- Nota mayor.
+- Nota menor.
+- Cantidad de aprobados.
+- Cantidad de reprobados.
+- Porcentaje de aprobados.
+- Porcentaje de reprobados.
+
+---
+
+##  Algoritmo
+
+1. Inicio.
+2. Solicitar el número de estudiantes.
+3. Inicializar suma, aprobados y reprobados.
+4. Inicializar nota mayor en 0.
+5. Inicializar nota menor en 10.
+6. Repetir para cada estudiante.
+7. Solicitar la nota.
+8. Validar que la nota esté entre 0 y 10.
+9. Acumular la nota.
+10. Determinar la nota mayor y menor.
+11. Si la nota es mayor o igual a 7, contar como aprobado.
+12. En caso contrario, contar como reprobado.
+13. Calcular el promedio.
+14. Calcular los porcentajes.
+15. Mostrar los resultados.
+16. Fin.
+
+---
+
+##  Pseudocódigo
+
+```text
+Proceso EstadisticasCurso
+
+    Definir N, i, aprobados, reprobados Como Entero
+    Definir nota, suma, mayor, menor Como Real
+    Definir promedio Como Real
+    Definir porcentajeAprobados Como Real
+    Definir porcentajeReprobados Como Real
+
+    Escribir "Ingrese el numero de estudiantes:"
+    Leer N
+
+    suma <- 0
+    aprobados <- 0
+    reprobados <- 0
+    mayor <- 0
+    menor <- 10
+
+    Para i <- 1 Hasta N Hacer
+
+        Repetir
+
+            Escribir "Ingrese la nota del estudiante ", i
+            Escribir "(0 a 10):"
+            Leer nota
+
+            Si nota < 0 O nota > 10 Entonces
+                Escribir "Nota invalida."
+                Escribir "Debe estar entre 0 y 10."
+            FinSi
+
+        Hasta Que nota >= 0 Y nota <= 10
+
+        suma <- suma + nota
+
+        Si nota > mayor Entonces
+            mayor <- nota
+        FinSi
+
+        Si nota < menor Entonces
+            menor <- nota
+        FinSi
+
+        Si nota >= 7 Entonces
+            aprobados <- aprobados + 1
+        SiNo
+            reprobados <- reprobados + 1
+        FinSi
+
+    FinPara
+
+    promedio <- suma / N
+
+    porcentajeAprobados <- aprobados * 100 / N
+
+    porcentajeReprobados <- reprobados * 100 / N
+
+    Escribir "===== ESTADISTICAS DEL CURSO ====="
+
+    Escribir "Promedio general: ", promedio
+
+    Escribir "Nota mayor: ", mayor
+
+    Escribir "Nota menor: ", menor
+
+    Escribir "Cantidad de aprobados: ", aprobados
+
+    Escribir "Cantidad de reprobados: ", reprobados
+
+    Escribir "Porcentaje de aprobados: ",
+             porcentajeAprobados, "%"
+
+    Escribir "Porcentaje de reprobados: ",
+             porcentajeReprobados, "%"
+
+FinProceso
+```
+
+---
+
+##  Diagrama de flujo
+
+<img width="876" height="1320" alt="image" src="https://github.com/user-attachments/assets/6400b35a-c66b-4fc0-93d9-32ab3e413737" />
+
+
+---
+
+##  Código Java
+
+```java
+import java.util.Scanner;
+
+public class EstadisticasCurso {
+
+    public static void main(String[] args) {
+
+        Scanner entrada = new Scanner(System.in);
+
+        int n;
+        int aprobados = 0;
+        int reprobados = 0;
+
+        double nota;
+        double suma = 0;
+        double mayor = 0;
+        double menor = 10;
+
+        System.out.print(
+            "Ingrese el numero de estudiantes: "
+        );
+
+        n = entrada.nextInt();
+
+        for (int i = 1; i <= n; i++) {
+
+            do {
+
+                System.out.print(
+                    "Ingrese la nota del estudiante "
+                    + i + " (0-10): "
+                );
+
+                nota = entrada.nextDouble();
+
+                if (nota < 0 || nota > 10) {
+
+                    System.out.println(
+                        "Nota invalida."
+                    );
+
+                    System.out.println(
+                        "Debe estar entre 0 y 10."
+                    );
+                }
+
+            } while (nota < 0 || nota > 10);
+
+            suma = suma + nota;
+
+            if (nota > mayor) {
+                mayor = nota;
+            }
+
+            if (nota < menor) {
+                menor = nota;
+            }
+
+            if (nota >= 7) {
+                aprobados++;
+            } else {
+                reprobados++;
+            }
+        }
+
+        double promedio = suma / n;
+
+        double porcentajeAprobados =
+            (aprobados * 100.0) / n;
+
+        double porcentajeReprobados =
+            (reprobados * 100.0) / n;
+
+        System.out.println(
+            "\n===== ESTADISTICAS DEL CURSO ====="
+        );
+
+        System.out.printf(
+            "Promedio general: %.2f%n",
+            promedio
+        );
+
+        System.out.printf(
+            "Nota mayor: %.2f%n",
+            mayor
+        );
+
+        System.out.printf(
+            "Nota menor: %.2f%n",
+            menor
+        );
+
+        System.out.println(
+            "Cantidad de aprobados: "
+            + aprobados
+        );
+
+        System.out.println(
+            "Cantidad de reprobados: "
+            + reprobados
+        );
+
+        System.out.printf(
+            "Porcentaje de aprobados: %.2f%%%n",
+            porcentajeAprobados
+        );
+
+        System.out.printf(
+            "Porcentaje de reprobados: %.2f%%%n",
+            porcentajeReprobados
+        );
+
+        entrada.close();
+    }
+}
+```
+
+---
+
+##  Prueba de escritorio
+
+### Datos
+
+Número de estudiantes: **5**
+
+Notas:
+
+```text
+8
+6
+10
+5
+7
+```
+
+| Estudiante | Nota | Suma | Mayor | Menor | Aprobados | Reprobados |
+|---:|---:|---:|---:|---:|---:|---:|
+| 1 | 8 | 8 | 8 | 8 | 1 | 0 |
+| 2 | 6 | 14 | 8 | 6 | 1 | 1 |
+| 3 | 10 | 24 | 10 | 6 | 2 | 1 |
+| 4 | 5 | 29 | 10 | 5 | 2 | 2 |
+| 5 | 7 | 36 | 10 | 5 | 3 | 2 |
+
+### Resultado
+
+<img width="2499" height="1272" alt="image" src="https://github.com/user-attachments/assets/97c414b1-435f-437d-9b75-22054a50f0fd" />
+
+
+---
+
+# EJERCICIO 7: VENTA DE ENTRADAS CINECAMPUS
+
+##  Problema
+
+Realizar un programa para controlar la venta de entradas de un cine universitario denominado CineCampus.
+
+El programa debe permitir ingresar el tipo de entrada, la cantidad y el precio de cada entrada.
+
+Debe calcular el subtotal de cada venta y acumular el total de entradas vendidas y el total de dinero recaudado.
+
+El programa debe permitir realizar varias ventas.
+
+---
+
+##  Análisis
+
+El programa comienza inicializando el total de ventas y el total de entradas en cero.
+
+En cada venta se solicita:
+
+- Tipo de entrada.
+- Cantidad.
+- Precio unitario.
+
+El subtotal se obtiene multiplicando la cantidad por el precio.
+
+Después se acumula el subtotal al total general y la cantidad de entradas al total de entradas vendidas.
+
+Finalmente se pregunta al usuario si desea realizar otra venta.
+
+El proceso continúa hasta que el usuario responda N.
+
+---
+
+##  Entradas
+
+- Tipo de entrada.
+- Cantidad de entradas.
+- Precio de cada entrada.
+- Opción para continuar.
+
+---
+
+##  Procesos
+
+- Leer tipo de entrada.
+- Leer cantidad.
+- Leer precio.
+- Calcular subtotal.
+- Acumular ventas.
+- Acumular cantidad de entradas.
+- Preguntar si desea realizar otra venta.
+
+---
+
+##  Salidas
+
+- Tipo de entrada.
+- Subtotal.
+- Total acumulado.
+- Total de entradas vendidas.
+- Total de ventas.
+
+---
+
+##  Algoritmo
+
+1. Inicio.
+2. Inicializar total de ventas en cero.
+3. Inicializar total de entradas en cero.
+4. Solicitar el tipo de entrada.
+5. Solicitar la cantidad.
+6. Solicitar el precio.
+7. Calcular el subtotal.
+8. Acumular el subtotal al total.
+9. Acumular la cantidad de entradas.
+10. Mostrar el subtotal.
+11. Mostrar el total acumulado.
+12. Preguntar si desea realizar otra venta.
+13. Si responde S, repetir el proceso.
+14. Si responde N, mostrar el resumen final.
+15. Fin.
+
+---
+
+##  Pseudocódigo
+
+```text
+Proceso VentaCineCampus
+
+    Definir tipo, continuar Como Caracter
+    Definir cantidad, totalEntradas Como Entero
+    Definir precio, subtotal, total Como Real
+
+    total <- 0
+    totalEntradas <- 0
+
+    Repetir
+
+        Escribir "===== CINECAMPUS ====="
+
+        Escribir "Ingrese el tipo de entrada:"
+        Leer tipo
+
+        Escribir "Ingrese la cantidad de entradas:"
+        Leer cantidad
+
+        Escribir "Ingrese el precio de cada entrada:"
+        Leer precio
+
+        subtotal <- cantidad * precio
+
+        total <- total + subtotal
+
+        totalEntradas <- totalEntradas + cantidad
+
+        Escribir "Tipo de entrada: ", tipo
+
+        Escribir "Subtotal: $", subtotal
+
+        Escribir "Total acumulado: $", total
+
+        Escribir "Desea realizar otra venta? (S/N):"
+        Leer continuar
+
+    Hasta Que continuar = "N" O continuar = "n"
+
+    Escribir "===== RESUMEN FINAL ====="
+
+    Escribir "Total de entradas vendidas: ",
+             totalEntradas
+
+    Escribir "Total de ventas: $", total
+
+FinProceso
+```
+
+---
+
+##  Diagrama de flujo
+
+<img width="906" height="1352" alt="image" src="https://github.com/user-attachments/assets/417c62bd-9aba-4f47-972d-04cf449c3345" />
+
+
+---
+
+##  Código Java
+
+```java
+import java.util.Scanner;
+
+public class VentaCineCampus {
+
+    public static void main(String[] args) {
+
+        Scanner entrada = new Scanner(System.in);
+
+        String tipo;
+        String continuar;
+
+        int cantidad;
+        int totalEntradas = 0;
+
+        double precio;
+        double subtotal;
+        double total = 0;
+
+        do {
+
+            System.out.println("\n===== CINECAMPUS =====");
+
+            System.out.print(
+                "Ingrese el tipo de entrada: "
+            );
+
+            tipo = entrada.next();
+
+            System.out.print(
+                "Ingrese la cantidad de entradas: "
+            );
+
+            cantidad = entrada.nextInt();
+
+            System.out.print(
+                "Ingrese el precio de cada entrada: "
+            );
+
+            precio = entrada.nextDouble();
+
+            subtotal = cantidad * precio;
+
+            total = total + subtotal;
+
+            totalEntradas =
+                totalEntradas + cantidad;
+
+            System.out.println(
+                "Tipo de entrada: " + tipo
+            );
+
+            System.out.printf(
+                "Subtotal: $%.2f%n",
+                subtotal
+            );
+
+            System.out.printf(
+                "Total acumulado: $%.2f%n",
+                total
+            );
+
+            System.out.print(
+                "¿Desea realizar otra venta? (S/N): "
+            );
+
+            continuar = entrada.next();
+
+        } while (
+            continuar.equalsIgnoreCase("S")
+        );
+
+        System.out.println(
+            "\n===== RESUMEN FINAL ====="
+        );
+
+        System.out.println(
+            "Total de entradas vendidas: "
+            + totalEntradas
+        );
+
+        System.out.printf(
+            "Total de ventas: $%.2f%n",
+            total
+        );
+
+        entrada.close();
+    }
+}
+```
+
+---
+
+##  Prueba de escritorio
+
+### Datos
+
+Primera venta:
+
+```text
+Tipo: General
+Cantidad: 3
+Precio: $5
+```
+
+Segunda venta:
+
+```text
+Tipo: Estudiante
+Cantidad: 2
+Precio: $3
+```
+
+| Venta | Tipo | Cantidad | Precio | Subtotal | Total acumulado |
+|---:|---|---:|---:|---:|---:|
+| 1 | General | 3 | $5 | $15 | $15 |
+| 2 | Estudiante | 2 | $3 | $6 | $21 |
+
+### Resultado
+
+<img width="1043" height="445" alt="image" src="https://github.com/user-attachments/assets/d596aa60-1dcf-4c93-b621-31dc3dfdb87b" />
+
