@@ -1047,3 +1047,450 @@ Precio: $3
 
 <img width="1043" height="445" alt="image" src="https://github.com/user-attachments/assets/d596aa60-1dcf-4c93-b621-31dc3dfdb87b" />
 
+---
+
+# 8. Estacionamiento Universitario
+
+## Enunciado
+Registre varios vehículos indicando tipo, número de horas y tarifa correspondiente. Calcule el valor individual y la recaudación total. El proceso finalizará al ingresar una opción centinela definida por el equipo.
+
+- **Estructura sugerida:** `while`
+- **Conceptos:** Centinela, acumuladores, validaciones y selección.
+
+---
+
+## Análisis
+Para resolver el problema planteado, se requiere implementar una secuencia de pasos lógicos basada en la lectura e iteración de datos:
+- **Validación inicial y control:** Utilizar un ciclo `while` controlado por una variable centinela (`opcionCentinela`) para permitir el ingreso continuo de vehículos o finalizar el programa.
+- **Validación de entradas:** Para cada vehículo, solicitar el número de horas y la tarifa por hora, asegurando mediante bucles de validación que ambos valores sean estrictamente mayores a 0.
+- **Cálculo individual y acumulación:**
+  * Calcular el pago individual multiplicando las horas por la tarifa.
+  * Sumar el valor individual a la variable acumuladora `recaudacionTotal`.
+- **Actualización de centinela:** Al final de cada iteración, solicitar al usuario que confirme si desea registrar otro vehículo o salir.
+- **Cálculo y presentación final:** Al finalizar el bucle, mostrar el valor total acumulado de la recaudación del día.
+
+---
+
+## Entradas / Procesos / Salidas
+
+- **Entradas:**
+  * `opcionCentinela`: Opción del menú/centinela (1 = Registrar, 0 = Salir).
+  * `tipoVehiculo`: Tipo de vehículo registrado (1 = Auto, 2 = Moto, 3 = Autobús/Otro).
+  * `horas`: Cantidad de horas estacionado ($horas > 0$).
+  * `tarifa`: Tarifa aplicable por hora ($tarifa > 0$).
+
+- **Procesos:**
+  * Solicitar y evaluar `opcionCentinela`.
+  * Inicializar `recaudacionTotal = 0.0`.
+  * Mientras `opcionCentinela == 1`:
+    * Leer `tipoVehiculo`.
+    * Leer y validar `horas` ($horas > 0$).
+    * Leer y validar `tarifa` ($tarifa > 0$).
+    * `pagoIndividual = horas * tarifa`.
+    * `recaudacionTotal = recaudacionTotal + pagoIndividual`.
+    * Mostrar `pagoIndividual`.
+    * Leer nueva `opcionCentinela`.
+
+- **Salidas:**
+  * Pago individual por vehículo.
+  * Recaudación total acumulada.
+
+---
+
+## Pseudocódigo
+
+```text
+Algoritmo EstacionamientoUniversitario
+    Definir opcionCentinela, tipoVehiculo Como Entero
+    Definir horas, tarifa, pagoIndividual, recaudacionTotal Como Real
+    
+    recaudacionTotal <- 0.0
+    
+    Escribir "=== SISTEMA DE ESTACIONAMIENTO UNIVERSITARIO ==="
+    Escribir "1. Registrar vehiculo"
+    Escribir "0. Salir y mostrar recaudacion total"
+    Escribir "Seleccione una opcion:"
+    Leer opcionCentinela
+    
+    Mientras opcionCentinela = 1 Hacer
+        Escribir "--- REGISTRO DE VEHÍCULO ---"
+        Escribir "1. Auto"
+        Escribir "2. Moto"
+        Escribir "3. Autobus / Otro"
+        Escribir "Seleccione el tipo de vehiculo:"
+        Leer tipoVehiculo
+        
+        Repetir
+            Escribir "Ingrese el numero de horas estacionado (mayor a 0):"
+            Leer horas
+            Si horas <= 0 Entonces
+                Escribir "Error: El tiempo de estacionamiento debe ser mayor a 0."
+            FinSi
+        Hasta Que horas > 0
+        
+        Repetir
+            Escribir "Ingrese la tarifa por hora ($ mayor a 0):"
+            Leer tarifa
+            Si tarifa <= 0 Entonces
+                Escribir "Error: La tarifa debe ser mayor a 0."
+            FinSi
+        Hasta Que tarifa > 0
+        
+        pagoIndividual <- horas * tarifa
+        recaudacionTotal <- recaudacionTotal + pagoIndividual
+        
+        Escribir "Valor a pagar por este vehiculo: $", pagoIndividual
+        
+        Escribir "¿Desea registrar otro vehiculo?"
+        Escribir "1. Si"
+        Escribir "0. No (Finalizar)"
+        Escribir "Opcion:"
+        Leer opcionCentinela
+    FinMientras
+    
+    Escribir "============================================"
+    Escribir "RECAUDACIÓN TOTAL ACUMULADA: $", recaudacionTotal
+    Escribir "============================================"
+FinAlgoritmo
+```
+
+---
+
+## Diagrama de flujo
+
+<img width="636" height="986" alt="image" src="https://github.com/user-attachments/assets/c47bfb4d-2931-4199-9a64-44ba69806ff2" />
+
+
+---
+
+## Prueba de escritorio
+
+| Paso | Centinela | Tipo | Horas | Tarifa | Pago Ind. | Recaudación | Obs. |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
+| **1** | 1 | - | - | - | - | 0.0 | Inicio. Opción 1 |
+| **2** | 1 | 1 | 2.0 | 1.50 | 3.00 | 3.00 | Vehículo 1 (Auto) |
+| **3** | 1 | 2 | 3.0 | 0.50 | 1.50 | 4.50 | Vehículo 2 (Moto) |
+| **4** | 0 | - | - | - | - | 4.50 | Fin ciclo. Recaudación total = 4.50 |
+
+---
+
+## Evidencias de ejecucion
+
+<img width="1600" height="542" alt="image" src="https://github.com/user-attachments/assets/6fe9e884-30f4-4a87-9a91-0ef6b9c624be" />
+
+---
+
+# 9. Matriz lógica de asistencia
+
+## Enunciado
+Solicite el número de estudiantes y el número de días. Para cada estudiante registre su asistencia mediante P (presente) o A (ausente). Al finalizar muestre las asistencias y ausencias de cada estudiante y los totales del curso.
+
+- **Estructura sugerida:** `for` anidado
+- **Conceptos:** Ciclos anidados, contadores y validación.
+
+---
+
+## Análisis
+Para resolver el problema planteado, se requiere implementar una secuencia de pasos lógicos basada en la lectura e iteración de datos mediante ciclos anidados:
+- **Validación inicial:** Solicitar la cantidad de estudiantes ($N$) y la cantidad de días ($D$), asegurando mediante bucles de validación que ambos valores sean enteros mayores a 0.
+- **Procesamiento anidado (Ciclos):** 
+  * Un ciclo externo (`for`) recorrerá cada uno de los estudiantes desde $1$ hasta $N$.
+  * Un ciclo interno (`for`) recorrerá los días desde $1$ hasta $D$ para el estudiante actual.
+- **Validación de entradas y conteo individual:**
+  * Para cada día, se solicitará ingresar el estado de asistencia, validando que el valor ingresado sea estrictamente `'P'` (Presente) o `'A'` (Ausente).
+  * Se llevarán contadores individuales de asistencias y ausencias por estudiante.
+- **Acumulación general y presentación de resultados:**
+  * Al terminar de registrar los días de un estudiante, se muestran sus totales individuales y se suman a los acumuladores generales del curso.
+  * Al finalizar ambos ciclos, se presentan los totales consolidados de asistencias y ausencias de todo el curso.
+
+---
+
+## Entradas / Procesos / Salidas
+
+- **Entradas:**
+  * `numEstudiantes`: Cantidad de estudiantes a registrar ($numEstudiantes > 0$).
+  * `numDias`: Cantidad de días de clase a registrar ($numDias > 0$).
+  * `asistencia`: Estado de asistencia por día (`'P'` o `'A'`).
+
+- **Procesos:**
+  * Solicitar y validar `numEstudiantes` y `numDias`.
+  * Inicializar variables generales: `totalAsistenciasCurso = 0`, `totalAusenciasCurso = 0`.
+  * Para $i = 1$ hasta `numEstudiantes`:
+    * Inicializar contadores individuales: `asistenciasEstudiante = 0`, `ausenciasEstudiante = 0`.
+    * Para $j = 1$ hasta `numDias`:
+      * Leer y validar `asistencia` (debe ser `'P'` o `'A'`).
+      * Si `asistencia == 'P'`, incrementar `asistenciasEstudiante`.
+      * Si `asistencia == 'A'`, incrementar `ausenciasEstudiante`.
+    * Mostrar totales del estudiante $i$.
+    * `totalAsistenciasCurso = totalAsistenciasCurso + asistenciasEstudiante`.
+    * `totalAusenciasCurso = totalAusenciasCurso + ausenciasEstudiante`.
+
+- **Salidas:**
+  * Cantidad de asistencias y ausencias individuales por estudiante.
+  * Total general de asistencias del curso.
+  * Total general de ausencias del curso.
+
+---
+
+## Pseudocódigo
+
+```text
+Algoritmo MatrizLogicaAsistencia
+    Definir numEstudiantes, numDias, i, j Como Entero
+    Definir asistenciasEstudiante, ausenciasEstudiante Como Entero
+    Definir totalAsistenciasCurso, totalAusenciasCurso Como Entero
+    Definir asistencia Como Cadena
+    
+    totalAsistenciasCurso <- 0
+    totalAusenciasCurso <- 0
+    
+    Escribir "=== SISTEMA DE CONTROL DE ASISTENCIA ==="
+    
+    Repetir
+        Escribir "Ingrese la cantidad de estudiantes (mayor a 0):"
+        Leer numEstudiantes
+        Si numEstudiantes <= 0 Entonces
+            Escribir "Error: El numero de estudiantes debe ser mayor a 0."
+        FinSi
+    Hasta Que numEstudiantes > 0
+    
+    Repetir
+        Escribir "Ingrese el numero de dias a registrar (mayor a 0):"
+        Leer numDias
+        Si numDias <= 0 Entonces
+            Escribir "Error: El numero de dias debe ser mayor a 0."
+        FinSi
+    Hasta Que numDias > 0
+    
+    Para i <- 1 Hasta numEstudiantes Con Paso 1 Hacer
+        asistenciasEstudiante <- 0
+        ausenciasEstudiante <- 0
+        
+        Escribir "--- REGISTRO PARA ESTUDIANTE ", i, " ---"
+        
+        Para j <- 1 Hasta numDias Con Paso 1 Hacer
+            Repetir
+                Escribir "Dia ", j, " - Ingrese asistencia (P: Presente / A: Ausente):"
+                Leer asistencia
+                asistencia <- Mayusculas(asistencia)
+                Si asistencia <> "P" Y asistencia <> "A" Entonces
+                    Escribir "Error: Ingrese solo 'P' para Presente o 'A' para Ausente."
+                FinSi
+            Hasta Que asistencia = "P" O asistencia = "A"
+            
+            Si asistencia = "P" Entonces
+                asistenciasEstudiante <- asistenciasEstudiante + 1
+            Sino
+                ausenciasEstudiante <- ausenciasEstudiante + 1
+            FinSi
+        FinPara
+        
+        Escribir "Estudiante ", i, " -> Asistencias: ", asistenciasEstudiante, " | Ausencias: ", ausenciasEstudiante
+        
+        totalAsistenciasCurso <- totalAsistenciasCurso + asistenciasEstudiante
+        totalAusenciasCurso <- totalAusenciasCurso + ausenciasEstudiante
+    FinPara
+    
+    Escribir "============================================"
+    Escribir "--- RESUMEN GENERAL DEL CURSO ---"
+    Escribir "Total Asistencias del Curso: ", totalAsistenciasCurso
+    Escribir "Total Ausencias del Curso: ", totalAusenciasCurso
+    Escribir "============================================"
+FinAlgoritmo
+```
+
+---
+
+## Diagrama de flujo
+
+<img width="825" height="1600" alt="image" src="https://github.com/user-attachments/assets/430e23e2-1d58-49b2-b29f-0670560937aa" />
+
+
+---
+
+## Prueba de escritorio
+
+| Paso | Est. ($i$) | Día ($j$) | Asistencia | Asist. Est. | Aus. Est. | Total Asist. Curso | Total Aus. Curso | Obs. |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
+| **1** | - | - | - | - | - | 0 | 0 | Inicio. Estudiantes=2, Días=2 |
+| **2** | 1 | 1 | 'P' | 1 | 0 | 0 | 0 | Est. 1 - Día 1 |
+| **3** | 1 | 2 | 'P' | 2 | 0 | 0 | 0 | Est. 1 - Día 2 |
+| **4** | 1 | - | - | 2 | 0 | 2 | 0 | Fin Est. 1 -> Asist: 2, Aus: 0 |
+| **5** | 2 | 1 | 'A' | 0 | 1 | 2 | 0 | Est. 2 - Día 1 |
+| **6** | 2 | 2 | 'P' | 1 | 1 | 2 | 0 | Est. 2 - Día 2 |
+| **7** | 2 | - | - | 1 | 1 | 3 | 1 | Fin Est. 2 -> Asist: 1, Aus: 1 |
+| **8** | - | - | - | - | - | 3 | 1 | Resumen: Total Asist=3, Total Aus=1 |
+
+---
+
+## Evidencias de ejecucion
+
+
+<img width="1450" height="667" alt="image" src="https://github.com/user-attachments/assets/40166dee-ef85-4264-be86-26e4a32f73cd" />
+
+
+---
+
+# 10. Sistema integrado de ventas
+
+## Enunciado
+Desarrolle un sistema con menú: 1) Registrar venta, 2) Mostrar estadísticas y 3) Salir. Cada venta debe solicitar producto, cantidad y precio. Las estadísticas mostrarán número de ventas, unidades vendidas, total recaudado, venta mayor y promedio por venta.
+
+- **Estructura sugerida:** `do-while` + `for`/`while`
+- **Conceptos:** Integración de menús, ciclos, acumuladores, contadores y validaciones.
+
+---
+
+## Análisis
+Para resolver el problema planteado, se requiere implementar una secuencia de pasos lógicos basada en la lectura de un menú interactivo y el procesamiento iterativo de ventas:
+- **Estructura principal de menú:** Utilizar un ciclo `do-while` para mantener el menú interactivo activo hasta que el usuario elija la opción de salir (`3`).
+- **Opción 1 - Registrar Venta:**
+  * Solicitar el nombre/identificador del producto.
+  * Solicitar y validar que la cantidad vendida sea un número entero mayor a 0.
+  * Solicitar y validar que el precio unitario sea un valor mayor a 0.
+  * Calcular el subtotal de la venta ($subtotal = \text{cantidad} \times \text{precio}$).
+  * Actualizar contadores y acumuladores globales: incrementar `totalVentas`, sumar `cantidad` a `unidadesVendidas` y sumar `subtotal` a `totalRecaudado`.
+  * Determinar la mayor venta registrada mediante comparaciones condicionales.
+- **Opción 2 - Mostrar Estadísticas:**
+  * Verificar si se ha realizado al menos una venta.
+  * Si existen ventas, calcular el promedio por venta ($\text{promedio} = \text{totalRecaudado} / \text{totalVentas}$) y mostrar las métricas acumuladas (número de ventas, unidades vendidas, total recaudado, venta mayor y promedio).
+  * Si no hay ventas registradas, mostrar un mensaje de advertencia.
+- **Opción 3 - Salir:** Finalizar la ejecución del programa.
+
+---
+
+## Entradas / Procesos / Salidas
+
+- **Entradas:**
+  * `opcionMenu`: Opción seleccionada del menú (1 = Registrar venta, 2 = Mostrar estadísticas, 3 = Salir).
+  * `producto`: Nombre o descripción del producto.
+  * `cantidad`: Unidades vendidas ($cantidad > 0$).
+  * `precio`: Precio unitario del producto ($precio > 0$).
+
+- **Procesos:**
+  * Inicializar variables acumuladoras y contadoras: `totalVentas = 0`, `unidadesVendidas = 0`, `totalRecaudado = 0.0`, `ventaMayor = 0.0`.
+  * Repetir mediante `do-while`:
+    * Mostrar menú y leer `opcionMenu`.
+    * **Si `opcionMenu == 1`:**
+      * Leer `producto`.
+      * Leer y validar `cantidad` ($cantidad > 0$).
+      * Leer y validar `precio` ($precio > 0$).
+      * `montoVenta = cantidad * precio`.
+      * `totalVentas = totalVentas + 1`.
+      * `unidadesVendidas = unidadesVendidas + cantidad`.
+      * `totalRecaudado = totalRecaudado + montoVenta`.
+      * Si `totalVentas == 1` o `montoVenta > ventaMayor`, entonces `ventaMayor = montoVenta`.
+    * **Si `opcionMenu == 2`:**
+      * Si `totalVentas > 0`: `promedioVenta = totalRecaudado / totalVentas` y presentar métricas.
+      * Si `totalVentas == 0`: Presentar mensaje de sin registros.
+
+- **Salidas:**
+  * Confirmación y monto de cada venta individual.
+  * Estadísticas generales: Número de ventas, unidades vendidas, total recaudado, venta mayor y promedio por venta.
+
+---
+
+## Pseudocódigo
+
+```text
+Algoritmo SistemaIntegradoVentas
+    Definir opcionMenu, cantidad, totalVentas, unidadesVendidas Como Entero
+    Definir precio, montoVenta, totalRecaudado, ventaMayor, promedioVenta Como Real
+    Definir producto Como Cadena
+    
+    totalVentas <- 0
+    unidadesVendidas <- 0
+    totalRecaudado <- 0.0
+    ventaMayor <- 0.0
+    
+    Hacer
+        Escribir "=== SISTEMA INTEGRADO DE VENTAS ==="
+        Escribir "1. Registrar venta"
+        Escribir "2. Mostrar estadísticas"
+        Escribir "3. Salir"
+        Escribir "Seleccione una opcion:"
+        Leer opcionMenu
+        
+        Segun opcionMenu Hacer
+            1:
+                Escribir "--- REGISTRO DE VENTA ---"
+                Escribir "Ingrese el nombre del producto:"
+                Leer producto
+                
+                Repetir
+                    Escribir "Ingrese la cantidad (mayor a 0):"
+                    Leer cantidad
+                    Si cantidad <= 0 Entonces
+                        Escribir "Error: La cantidad debe ser mayor a 0."
+                    FinSi
+                Hasta Que cantidad > 0
+                
+                Repetir
+                    Escribir "Ingrese el precio unitario ($ mayor a 0):"
+                    Leer precio
+                    Si precio <= 0 Entonces
+                        Escribir "Error: El precio debe ser mayor a 0."
+                    FinSi
+                Hasta Que precio > 0
+                
+                montoVenta <- cantidad * precio
+                totalVentas <- totalVentas + 1
+                unidadesVendidas <- unidadesVendidas + cantidad
+                totalRecaudado <- totalRecaudado + montoVenta
+                
+                Si totalVentas = 1 O montoVenta > ventaMayor Entonces
+                    ventaMayor <- montoVenta
+                FinSi
+                
+                Escribir "Venta registrada exitosamente. Monto: $", montoVenta
+                
+            2:
+                Escribir "--- ESTADÍSTICAS GENERALES DE VENTAS ---"
+                Si totalVentas > 0 Entonces
+                    promedioVenta <- totalRecaudado / totalVentas
+                    Escribir "Número de ventas realizadas: ", totalVentas
+                    Escribir "Total de unidades vendidas: ", unidadesVendidas
+                    Escribir "Total recaudado: $", totalRecaudado
+                    Escribir "Monto de la venta mayor: $", ventaMayor
+                    Escribir "Promedio por venta: $", promedioVenta
+                Sino
+                    Escribir "No hay ventas registradas en el sistema."
+                FinSi
+                
+            3:
+                Escribir "Saliendo del sistema..."
+                
+            De Otro Modo:
+                Escribir "Opción inválida. Intente nuevamente."
+        FinSegun
+        
+    Hasta Que opcionMenu = 3
+    
+FinAlgoritmo
+```
+
+---
+
+## Diagrama de flujo
+
+<img width="1600" height="1441" alt="image" src="https://github.com/user-attachments/assets/024c8a1d-4929-42f2-8317-ad5fe07122fd" />
+
+
+---
+
+## Prueba de escritorio
+
+| Paso | Opción | Cantidad | Precio | Monto Venta | Total Ventas | Unidades Tot. | Total Recaudado | Venta Mayor | Promedio | Obs. |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
+| **1** | - | - | - | - | 0 | 0 | 0.0 | 0.0 | - | Inicio de variables |
+| **2** | 1 | 2 | 10.00 | 20.00 | 1 | 2 | 20.00 | 20.00 | - | Reg. Venta 1 (2 @ $10) |
+| **3** | 1 | 5 | 10.00 | 50.00 | 2 | 7 | 70.00 | 50.00 | - | Reg. Venta 2 (5 @ $10) |
+| **4** | 2 | - | - | - | 2 | 7 | 70.00 | 50.00 | 35.00 | Muestra estadísticas |
+| **5** | 3 | - | - | - | 2 | 7 | 70.00 | 50.00 | 35.00 | Salir del sistema |
+
+---
+
+## Evidencias de ejecucion
+
+<img width="1600" height="856" alt="image" src="https://github.com/user-attachments/assets/e036b338-7e56-4ec4-a301-1500d876afed" />
+
